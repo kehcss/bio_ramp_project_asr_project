@@ -18,7 +18,7 @@ To set up the project, follow these steps:
 
 2. Install the required packages:
    ```
-   pip install -r requirements.txt
+   run the first cell titled "Pip Install Requirment"
    ```
 
 ## Usage Guidelines
