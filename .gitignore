@@ -6,8 +6,8 @@
 *.zip filter=lfs diff=lfs merge=lfs -text
 
 # Ignore all files in the data folder
-cv-corpus-21.0-delta-2025-03-14/en*
-CommonVoice
+data_folder/afrivox/*
+
 
 # Ignore .css, .xlsx, and .png files
 *.csv
