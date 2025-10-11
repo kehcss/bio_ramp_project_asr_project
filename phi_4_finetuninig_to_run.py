@@ -83,7 +83,7 @@ def download_and_extract_tar_gz(url, extract_to):
 tar_gz_url = 'https://cdn-lfs-us-1.hf.co/repos/1d/1a/1d1aae8e4883304aa2389f0d0eac8e133c547fae2efe5abe6f9f98654c1d256e/3ea3625f491c56acfa7a14fae6d877abccfb7ff508ea00154a41261320c00b2d?response-content-disposition=attachment%3B+filename*%3DUTF-8%27%27audio.tar.gz%3B+filename%3D%22audio.tar.gz%22%3B&response-content-type=application%2Fgzip&Expires=1747517544&Policy=eyJTdGF0ZW1lbnQiOlt7IkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTc0NzUxNzU0NH19LCJSZXNvdXJjZSI6Imh0dHBzOi8vY2RuLWxmcy11cy0xLmhmLmNvL3JlcG9zLzFkLzFhLzFkMWFhZThlNDg4MzMwNGFhMjM4OWYwZDBlYWM4ZTEzM2M1NDdmYWUyZWZlNWFiZTZmOWY5ODY1NGMxZDI1NmUvM2VhMzYyNWY0OTFjNTZhY2ZhN2ExNGZhZTZkODc3YWJjY2ZiN2ZmNTA4ZWEwMDE1NGE0MTI2MTMyMGMwMGIyZD9yZXNwb25zZS1jb250ZW50LWRpc3Bvc2l0aW9uPSomcmVzcG9uc2UtY29udGVudC10eXBlPSoifV19&Signature=o%7EcRN2J3tlGxE9GLBC05Tx%7E5nJ0tEklGSmypRA4U3fBPaZQMROWcAReTRLf71EqWuf8QaRUpTh86sdw8gFP0EZSuotft4v6ra8OOUEpt-R8h05A0JbV-pUgrNaetzqF2LVSeHD2yuvx9%7E8PuP0obQYYBMdCPQWzbsS70SpuuqboizXGMtXptMggEVGzRjuAO%7EuHXTwmSgk0e%7EZDOSHIUZPGU2jwgNn2D0H04lnbisTN7bq-WLaKoob0crQO%7EluI2UInx2jQZ%7E%7EpB%7Ew8UZYucq%7EnSW6YGZWEuJ3s8uua7y1XSy9PAXLjkv9f49b-OpVsFcurobIH%7E6Qw-gKgNyTaanQ__&Key-Pair-Id=K24J24Z295AEI9'
 
 # Directory to extract the contents
-extract_to = '/content/data_folder/afrivox'
+extract_to = 'data_folder/afrivox'
 
 
 # Download and extract
@@ -92,7 +92,7 @@ download_and_extract_tar_gz(tar_gz_url, extract_to)
 """## Clean up testset"""
 
 # Load the test csv file
-test_csv = pd.read_csv('/content/data_folder/afrivox/afrivox_transcribe_metadata.csv')
+test_csv = pd.read_csv('data_folder/afrivox/afrivox_transcribe_metadata.csv')
 
 # # Select rows with "language" == "hausa", "igbo", or "yoruba"
 # test_csv = test_csv[(test_csv['language'] == 'hausa') |
@@ -116,7 +116,7 @@ def remove_nonexistent_files(df):
 test_csv = remove_nonexistent_files(test_csv)
 
 # Save the cleaned DataFrame back to the CSV file
-test_csv.to_csv('/content/data_folder/afrivox/test.csv', index=False)
+test_csv.to_csv('data_folder/afrivox/test.csv', index=False)
 print(f"Cleaned and saved the test CSV file.")
 
 """## Download train and val sets from naijavoice as multi zip archieves"""
@@ -144,14 +144,14 @@ def download_and_extract_zip(url, extract_to):
 zip_url = 'https://uc1938e6ee619ff5c60701198ce6.dl.dropboxusercontent.com/cd/0/get/Cp2ZG5FNgpsUuVA68uQdY-AnDaLBaMc-IsK6E6odzvn5yk49fego6rKFmu1Mdp9erDs64Wryt8bzQ8rJagWHRXaq3gLP9QX7F5L8BtyRlNNZUn8LGb8Q8zeYc9QiRlSLs8MTXeVH5IUfxosf3_IuNhlbn25iCMVu1QSzsAxAmpTl-A/file?_download_id=114447514961958493249643071857246700198117596530711373721568644769988&_log_download_success=1#'
 
 # Directory to extract the contents
-extract_to = '/content/data_folder/afrivox'
+extract_to = 'data_folder/afrivox'
 
 # Download and extract
 download_and_extract_zip(zip_url, extract_to)
 
 """## Edit audio path and discard audio files not in directory"""
 
-train_val_dataset = pd.read_csv('/content/data_folder/afrivox/nv_train_subset_real.csv')
+train_val_dataset = pd.read_csv('data_folder/afrivox/nv_train_subset_real.csv')
 #rename speaker_id to client_id
 train_val_dataset.rename(columns={'speaker_id': 'client_id'}, inplace=True)
 train_val_dataset.rename(columns={'audio_path': 'path'}, inplace=True)
@@ -180,8 +180,8 @@ train_dataset = df.sample(frac=0.8, random_state=42)
 val_dataset = df.drop(train_dataset.index)
 
 # Save the datasets to CSV files
-train_dataset.to_csv('/content/data_folder/afrivox/train.csv', index=False)
-val_dataset.to_csv('/content/data_folder/afrivox/validated.csv', index=False)
+train_dataset.to_csv('data_folder/afrivox/train.csv', index=False)
+val_dataset.to_csv('data_folder/afrivox/validated.csv', index=False)
 
 """## Training Pipeline code"""
 
