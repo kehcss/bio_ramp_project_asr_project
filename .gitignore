@@ -10,7 +10,6 @@ data_folder/afrivox/*
 
 
 # Ignore .css, .xlsx, and .png files
-*.csv
 *.mp3
 *.tsv
 *.xlsx
